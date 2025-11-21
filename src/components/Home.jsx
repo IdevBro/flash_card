@@ -118,7 +118,6 @@ export default function Home({ cards, setCards }) {
       {/* Header */}
       <header className="w-full text-center mb-4 relative">
         <div className="flex items-center justify-center gap-[30px]">
-          <img className="w-[100px]" src={Logo} alt="" />
           <h1 className="text-4xl font-extrabold text-gray-800">
             {" "}
             <span className="text-[#01B428]">Me</span>
