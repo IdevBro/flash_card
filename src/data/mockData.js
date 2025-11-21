@@ -9,4 +9,4 @@ const today = formatDate(new Date());
 // Kechagi sana
 const yesterday = formatDate(new Date(Date.now() - 86400000)); // 24 soat milisaniyada
 
-export const MOCK_CARDS = [{}];
+export const MOCK_CARDS = [];

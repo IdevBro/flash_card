@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+* {
+  font-family: "Elms Sans", Arial;
+}
 /* 3D flip uchun kerak */
 .backface-hidden {
   backface-visibility: hidden;

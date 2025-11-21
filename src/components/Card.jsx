@@ -18,7 +18,7 @@ export default function Card({ card, onLearn }) {
     <div
       onClick={handleFlip}
       className={`
-        relative w-full h-[400px] max-w-sm cursor-pointer 
+        relative w-full h-[400px]  cursor-pointer 
         rounded-2xl shadow-2xl transition-transform duration-700 
         preserve-3d
         ${isFlipped ? "rotate-y-180" : ""}
@@ -32,14 +32,14 @@ export default function Card({ card, onLearn }) {
           flex flex-col items-center justify-center text-center
           backface-hidden transition-opacity duration-300
           ${isFlipped ? "opacity-0" : "opacity-100"}
-          ${card.isLearned ? "bg-green-600" : "bg-red-600"}
+          ${card.isLearned ? "bg-[#01B428]" : "bg-[#CA0021]"}
         `}
       >
         <p className="text-4xl font-bold select-none">{card.word}</p>
 
         {/* O‘rganilgan belgisi */}
         {card.isLearned && (
-          <div className="absolute top-4 right-4 text-white p-2 rounded-full bg-green-700 opacity-90">
+          <div className="absolute bottom-4 right-4 text-white p-2 rounded-full bg-green-700 opacity-90">
             <Check className="w-6 h-6" />
           </div>
         )}

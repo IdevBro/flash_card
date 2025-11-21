@@ -3,7 +3,7 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom"; // Link qo'shildi
 import Card from "./Card";
 import { ArrowLeft, ArrowRight, Edit3 } from "lucide-react";
-
+import Logo from "../assets/logo.png";
 // ... (Oldingi App.jsx dagi formatDate, today, yesterday, FILTER_TYPES larni bu yerga ko'chiring)
 const formatDate = (date) => date.toISOString().split("T")[0];
 const today = formatDate(new Date());
@@ -11,7 +11,7 @@ const yesterday = formatDate(new Date(Date.now() - 86400000));
 const FILTER_TYPES = {
   ALL: "Hammasi",
   TODAY: "Bugungi",
-  YESTERDAY: "Kechagi",
+  // YESTERDAY: "Kechagi",
   LEARNED: "O'rganilgan",
   UNLEARNED: "O'rganilmagan",
 };
@@ -117,19 +117,19 @@ export default function Home({ cards, setCards }) {
     >
       {/* Header */}
       <header className="w-full text-center mb-4 relative">
-        <h1 className="text-4xl font-extrabold text-gray-800">📚 FLASHCARD</h1>
+        <div className="flex items-center justify-center gap-[30px]">
+          <img className="w-[100px]" src={Logo} alt="" />
+          <h1 className="text-4xl font-extrabold text-gray-800">
+            {" "}
+            <span className="text-[#01B428]">Me</span>
+            <span className="text-[#CA0021]">Mora</span>
+          </h1>
+        </div>
         {/* YANGI KARTA QO'SHISH tugmasi */}
-        <Link
-          to="/add"
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition"
-          title="Yangi karta qo'shish"
-        >
-          +
-        </Link>
       </header>
 
       {/* Filtrlash Tugmalari (oldingi kod) */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8 w-full max-w-lg px-4">
+      <div className="flex flex-wrap justify-center gap-2 mb-8 w-full max-w-lg px-4  grid grid-cols-2">
         {Object.values(FILTER_TYPES).map((type) => (
           <button
             key={type}
@@ -138,10 +138,10 @@ export default function Home({ cards, setCards }) {
               setCurrentIndex(0);
             }}
             className={`
-                            px-3 py-1 text-sm rounded-full transition duration-150 ease-in-out
+                            px-3 py-2 text-sm rounded-[5px] transition duration-150 ease-in-out
                             ${
                               filter === type
-                                ? "bg-red-600 text-white shadow-md"
+                                ? "bg-gray-700 text-white shadow-md"
                                 : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-200"
                             }
                         `}
@@ -165,33 +165,23 @@ export default function Home({ cards, setCards }) {
         ))}
       </div>
 
-      <main className="w-full max-w-lg p-4 flex justify-center relative">
+      <main className="w-full max-w-lg px-4   ">
         {currentCard ? (
           <>
-            {/* Tahrirlash tugmasi (kartaning yuqorisida) */}
-            <Link
-              to={`/edit/${currentCard.id}`}
-              className="absolute top-0 right-4 p-2 bg-blue-500 text-white rounded-lg shadow-md z-10 hover:bg-blue-600 transition"
-              title="Tahrirlash"
-            >
-              <Edit3 className="w-5 h-5" />
-            </Link>
-
-            {/* Navigatsiya Tugmalari va Card komponenti */}
-            <button onClick={handlePrev} className="... hidden md:block">
-              {" "}
-              <ArrowLeft className="w-6 h-6 text-gray-800" />{" "}
-            </button>
-
-            <Card card={currentCard} onLearn={handleLearn} />
-
-            <button onClick={handleNext} className="... hidden md:block">
-              {" "}
-              <ArrowRight className="w-6 h-6 text-gray-800" />{" "}
-            </button>
+            <div className="w-full flex flex-col items-center relative">
+              <Card card={currentCard} onLearn={handleLearn} />
+              {/* Tahrirlash tugmasi (kartaning yuqorisida) */}
+              <Link
+                to={`/edit/${currentCard.id}`}
+                className=" absolute right-4 top-4  p-2 bg-blue-500 text-white rounded-lg shadow-md z-10 hover:bg-blue-600 transition"
+                title="Tahrirlash"
+              >
+                <Edit3 className="w-5 h-5" />
+              </Link>
+            </div>
           </>
         ) : (
-          <div className="text-center p-10 bg-white rounded-lg shadow">
+          <div className="  text-center p-10 bg-white rounded-lg shadow">
             <p className="text-xl text-gray-600">
               "{filter}" bo'yicha hech qanday so'z yo'q.
             </p>
@@ -207,14 +197,21 @@ export default function Home({ cards, setCards }) {
 
       {/* Mobil Navigatsiya Tugmalari (oldingi kod) */}
       {currentCard && (
-        <div className="flex w-full max-w-sm justify-between px-4 mt-8 md:hidden">
+        <div className="flex w-full max-w-lg px-4 justify-between  mt-8 md:hidden">
           <button onClick={handlePrev} className="... ">
             {" "}
-            <ArrowLeft className="w-5 h-5 mr-2" /> Oldingi{" "}
+            <ArrowLeft className="  active:bg-gray-600 cursor-pointer bg-gray-700 text-white rounded-[10px] py-[10px] px-[15px] w-[100%] h-[100%]" />
           </button>
+          <Link
+            to="/add"
+            className=" text-[24px] p-3 bg-gray-700 text-white w-[50%] text-center  shadow-lg rounded-[10px] transition"
+            title="Yangi karta qo'shish"
+          >
+            +
+          </Link>
           <button onClick={handleNext} className="... ">
             {" "}
-            Keyingi <ArrowRight className="w-5 h-5 ml-2" />{" "}
+            <ArrowRight className=" active:bg-gray-600  px-[15px] cursor-pointer py-[10px] w-[100%] h-[100%] bg-gray-700 text-white w-[50%] text-center  shadow-lg rounded-[10px] " />{" "}
           </button>
         </div>
       )}
