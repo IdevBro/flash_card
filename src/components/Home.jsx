@@ -3,7 +3,6 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom"; // Link qo'shildi
 import Card from "./Card";
 import { ArrowLeft, ArrowRight, Edit3 } from "lucide-react";
-import Logo from "../assets/logo.png";
 // ... (Oldingi App.jsx dagi formatDate, today, yesterday, FILTER_TYPES larni bu yerga ko'chiring)
 const formatDate = (date) => date.toISOString().split("T")[0];
 const today = formatDate(new Date());
