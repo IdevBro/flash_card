@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Check, X } from "lucide-react";
 
-export default function Card({ card, onLearn }) {
+export default function Card({ card, onLearn, currentIndex, filteredCards }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
@@ -36,6 +36,11 @@ export default function Card({ card, onLearn }) {
         `}
       >
         <p className="text-4xl font-bold select-none">{card.word}</p>
+        {card && (
+          <p className="absolute bottom-6">
+            Joriy karta: {currentIndex + 1} / {filteredCards.length}
+          </p>
+        )}
 
         {/* O‘rganilgan belgisi */}
         {card.isLearned && (

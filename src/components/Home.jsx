@@ -169,7 +169,12 @@ export default function Home({ cards, setCards }) {
         {currentCard ? (
           <>
             <div className="w-full flex flex-col items-center relative">
-              <Card card={currentCard} onLearn={handleLearn} />
+              <Card
+                card={currentCard}
+                currentIndex={currentIndex}
+                filteredCards={filteredCards}
+                onLearn={handleLearn}
+              />
               {/* Tahrirlash tugmasi (kartaning yuqorisida) */}
               <Link
                 to={`/edit/${currentCard.id}`}
@@ -213,15 +218,6 @@ export default function Home({ cards, setCards }) {
             {" "}
             <ArrowRight className=" active:bg-gray-600  px-[15px] cursor-pointer py-[10px] w-[100%] h-[100%] bg-gray-700 text-white w-[50%] text-center  shadow-lg rounded-[10px] " />{" "}
           </button>
-        </div>
-      )}
-
-      {currentCard && (
-        <div className="mt-8 text-center text-gray-600">
-          <p>
-            Joriy karta: {currentIndex + 1} / {filteredCards.length}
-          </p>
-          <p className="text-xs mt-1">Ko'rsatilmoqda: {filter}</p>
         </div>
       )}
     </div>
