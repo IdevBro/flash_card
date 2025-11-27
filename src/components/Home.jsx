@@ -168,19 +168,19 @@ export default function Home({ cards, setCards }) {
 
       {/* Mobil Navigatsiya Tugmalari */}
       {currentCard && (
-        <div className="flex w-full max-w-lg px-4 justify-between mt-8 md:hidden">
-          <button onClick={handlePrev} className="w-[48%]">
-            <ArrowLeft className="cursor-pointer bg-gray-700 text-white rounded-[10px] py-[10px] px-[15px] w-full h-full" />
+        <div className="flex  px-4 justify-between items-center w-full mt-8 md:hidden">
+          <button onClick={handlePrev}>
+            <ArrowLeft className="cursor-pointer bg-gray-700 text-white rounded-[10px] py-[15px] px-[15px] w-full h-full" />
           </button>
           <Link
             to="/add"
-            className="text-[24px] p-3 bg-gray-700 text-white w-[48%] text-center shadow-lg rounded-[10px] transition"
+            className="text-[24px]  bg-gray-700 text-white px-[70px] py-[10px] text-center shadow-lg rounded-[10px] transition"
             title="Yangi karta qo'shish"
           >
             +
           </Link>
-          <button onClick={handleNext} className="w-[48%]">
-            <ArrowRight className="cursor-pointer bg-gray-700 text-white rounded-[10px] py-[10px] px-[15px] w-full h-full" />
+          <button onClick={handleNext}>
+            <ArrowRight className="cursor-pointer bg-gray-700 text-white rounded-[10px] py-[15px] px-[15px] w-full h-full" />
           </button>
         </div>
       )}
