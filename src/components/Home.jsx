@@ -2,7 +2,8 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
-import { ArrowLeft, ArrowRight, Edit3 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Edit3, Download } from "lucide-react";
+import { exportTodayWordsToPDF, exportAllWordsToPDF } from "../utils/pdfExport";
 
 const formatDate = (date) => date.toISOString().split("T")[0];
 const today = formatDate(new Date());
@@ -96,6 +97,26 @@ export default function Home({ cards, setCards }) {
           <span className="text-[#01B428]">Me</span>
           <span className="text-[#CA0021]">Mora</span>
         </h1>
+
+        {/* PDF Yuklab Olish Tugmalari */}
+        <div className="flex justify-center gap-2 mt-4">
+          <button
+            onClick={() => exportTodayWordsToPDF(cards)}
+            className="flex items-center gap-1 px-3 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            title="Bugungi so'zlarni PDF yuklab olish"
+          >
+            <Download className="w-4 h-4" />
+            Bugungi
+          </button>
+          <button
+            onClick={() => exportAllWordsToPDF(cards)}
+            className="flex items-center gap-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            title="Barcha so'zlarni PDF yuklab olish"
+          >
+            <Download className="w-4 h-4" />
+            Barchasi
+          </button>
+        </div>
       </header>
 
       {/* Filtrlash Tugmalari */}
@@ -109,10 +130,9 @@ export default function Home({ cards, setCards }) {
             }}
             className={`
               px-3 py-2 text-sm rounded-[5px] transition duration-150 ease-in-out
-              ${
-                filter === type
-                  ? "bg-gray-700 text-white shadow-md"
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-200"
+              ${filter === type
+                ? "bg-gray-700 text-white shadow-md"
+                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-200"
               }
             `}
           >
